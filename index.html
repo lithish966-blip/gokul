@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Forecasting App UI Flow</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #243042;
+      --muted: #5d6b82;
+      --border: #dbe2ee;
+      --primary: #3366cc;
+      --admin: #284f9e;
+      --ok: #0e9f6e;
+      --danger: #e25454;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(22, 37, 63, 0.08);
+      --font: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 16px 48px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
+    }
+
+    .lead {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .screen {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .screen h2 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .75rem;
+      margin-bottom: 10px;
+    }
+
+    .mobile-frame {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 14px;
+      min-height: 280px;
+      background: #fcfdff;
+    }
+
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #5f8ded, #3a62b6);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .field, .btn, .menu-item, .metric, .log-item {
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 11px 12px;
+      margin-bottom: 10px;
+      width: 100%;
+      font-size: .9rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border-color: transparent;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn.secondary { background: #ecf1fb; color: #244271; border-color: #d3def0; }
+    .btn.admin { background: var(--admin); }
+    .btn.danger { background: var(--danger); }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 600;
+      min-height: 52px;
+      cursor: pointer;
+    }
+
+    .menu-item span:first-child { color: #5470a0; margin-right: 10px; }
+
+    .tiny { font-size: .8rem; color: var(--muted); }
+
+    .chart {
+      height: 120px;
+      border: 1px dashed #bfd0ec;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #5270a7;
+      margin-bottom: 10px;
+      background: linear-gradient(180deg, #f6f9ff, #ffffff);
+      font-size: .86rem;
+      text-align: center;
+      padding: 8px;
+    }
+
+    .fab {
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--admin);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      box-shadow: 0 8px 18px rgba(40,79,158,.35);
+    }
+
+    .relative { position: relative; padding-bottom: 64px; }
+
+    .desktop-note {
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd8ef;
+      background: #f4f8ff;
+      color: #375481;
+      font-size: .82rem;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 900px) {
+      .layout { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Sales Forecasting App — Screen-by-Screen UI Flow</h1>
+    <p class="lead">Light theme, rounded cards, touch-friendly controls, and vertical scrolling flow for Android, iOS, and desktop responsive behavior.</p>
+
+    <div class="layout">
+      <section class="screen"><div class="tag">Splash</div><div class="mobile-frame" style="display:grid;place-items:center;text-align:center"><div><div class="logo">📈</div><h2>Sales Forecasting App</h2><div class="tiny">Loading...</div></div></div></section>
+
+      <section class="screen"><div class="tag">Login</div><div class="mobile-frame"><h2>Sign In</h2><input class="field" placeholder="Username"><input class="field" placeholder="Password" type="password"><select class="field"><option>Admin</option><option>Analyst</option></select><button class="btn">Login</button><div class="tiny">Error message area</div></div></section>
+
+      <section class="screen"><div class="tag">Home Menu (Analyst)</div><div class="mobile-frame"><div class="app-header"><span>Home</span><span>⎋</span></div><div class="menu-item"><span>＋</span>Add Sales Data</div><div class="menu-item"><span>⚙</span>Preprocess Data</div><div class="menu-item"><span>◉</span>Select Forecast Model</div><div class="menu-item"><span>▶</span>Generate Forecast</div><div class="menu-item"><span>📊</span>View Results</div><div class="menu-item"><span>⬇</span>Download Report</div></div></section>
+
+      <section class="screen"><div class="tag">Sales Data Entry</div><div class="mobile-frame"><input class="field" placeholder="Product ID"><input class="field" placeholder="Product Name"><input class="field" placeholder="Category"><input class="field" placeholder="Sales Date (Date Picker)"><div class="row"><input class="field" placeholder="Quantity Sold"><input class="field" placeholder="Revenue Amount"></div><button class="btn secondary">Upload CSV / Excel</button><div class="row"><button class="btn">Save</button><button class="btn secondary">Clear</button></div></div></section>
+
+      <section class="screen"><div class="tag">Data Preprocessing</div><div class="mobile-frame"><div class="field">Toggle: Handle Missing Values</div><div class="field">Checkbox: Remove Outliers</div><div class="field">Toggle: Normalize Data</div><div class="field">Date Range Selector</div><div class="row"><button class="btn">Apply</button><button class="btn secondary">Reset</button></div></div></section>
+
+      <section class="screen"><div class="tag">Model Selection</div><div class="mobile-frame"><div class="field">◉ ARIMA</div><div class="field">○ SARIMA</div><div class="field">○ Prophet</div><div class="field">○ LSTM</div><input class="field" placeholder="Forecast Duration"><select class="field"><option>Seasonality: Monthly</option></select><button class="btn">Train Model</button></div></section>
+
+      <section class="screen"><div class="tag">Forecast Generation</div><div class="mobile-frame"><select class="field"><option>Product Selector</option></select><input class="field" placeholder="Forecast Horizon"><div class="field">Confidence Interval Slider</div><button class="btn">Generate Forecast</button></div></section>
+
+      <section class="screen"><div class="tag">Forecast Results</div><div class="mobile-frame"><div class="chart">Line Chart: Actual vs Predicted Sales</div><div class="chart">Bar Chart: Monthly Forecast</div><div class="row"><div class="metric">MAE</div><div class="metric">RMSE</div></div><div class="metric">MAPE</div><button class="btn">Download Report</button></div></section>
+
+      <section class="screen"><div class="tag">Report</div><div class="mobile-frame"><button class="btn">Download PDF</button><button class="btn secondary">Export Excel</button><div class="field">Report summary text</div></div></section>
+
+      <section class="screen"><div class="tag">Admin Home</div><div class="mobile-frame"><div class="app-header"><span>Admin Panel</span><span>☰</span></div><div class="menu-item"><span>👥</span>Manage Users</div><div class="menu-item"><span>🗂</span>Manage Sales Data</div><div class="menu-item"><span>🧠</span>Model Performance</div><div class="menu-item"><span>🧾</span>System Logs</div><div class="menu-item"><span>📤</span>Reports & Exports</div><div class="menu-item"><span>⚙</span>App Settings</div><div class="desktop-note">Bottom nav (optional): Home • Users • Data • Settings. Back navigation enabled and logout in top-right menu.</div></div></section>
+
+      <section class="screen"><div class="tag">User Management (Admin)</div><div class="mobile-frame relative"><div class="field">User Card — Username, Role, Status</div><div class="row"><button class="btn secondary">Edit</button><button class="btn danger">Disable</button></div><div class="field">User Card — Username, Role, Status</div><div class="row"><button class="btn secondary">Edit</button><button class="btn danger">Disable</button></div><div class="field">Add User: Username, Email, Role, Temp Password</div><div class="row"><button class="btn admin">Save</button><button class="btn secondary">Cancel</button></div><div class="fab">＋</div></div></section>
+
+      <section class="screen"><div class="tag">Sales Data Management (Admin)</div><div class="mobile-frame"><div class="field">Product Card — Name, Total Records, Last Updated</div><div class="row"><button class="btn secondary">View</button><button class="btn secondary">Edit</button></div><button class="btn danger">Delete (with confirmation)</button><div class="field">Product Card — Name, Total Records, Last Updated</div><button class="btn secondary">Upload New Dataset (CSV/Excel)</button></div></section>
+
+      <section class="screen"><div class="tag">Model Performance (Admin)</div><div class="mobile-frame"><select class="field"><option>Select Product</option></select><div class="metric">ARIMA → MAE, RMSE</div><div class="metric">SARIMA → MAE, RMSE</div><div class="metric">Prophet → MAE, RMSE</div><div class="metric">LSTM → MAE, RMSE</div><div class="chart">Single Comparison Bar Chart</div></div></section>
+
+      <section class="screen"><div class="tag">System Logs (Admin)</div><div class="mobile-frame"><div class="row"><select class="field"><option>Filter: User</option></select><select class="field"><option>Action Type</option></select></div><div class="log-item">2026-06-01 09:15 — Trained SARIMA — admin_user</div><div class="log-item">2026-06-01 10:02 — Uploaded dataset — analyst_1</div><div class="log-item">2026-06-01 10:44 — Generated report — admin_user</div><button class="btn danger">Clear Logs</button></div></section>
+
+      <section class="screen"><div class="tag">Reports & Exports (Admin)</div><div class="mobile-frame"><div class="field">Report Card — Product, Forecast Date, Model Used</div><div class="row"><button class="btn">PDF</button><button class="btn secondary">Excel</button></div><button class="btn danger">Delete Report</button><div class="field">Report Card — Product, Forecast Date, Model Used</div><button class="btn admin">Bulk Export</button></div></section>
+
+      <section class="screen"><div class="tag">App Settings (Admin)</div><div class="mobile-frame"><div class="field">Toggle: Enable Auto Forecasting</div><div class="field">Toggle: Allow CSV Upload for Analysts</div><div class="field">Toggle: Enable Model Comparison</div><input class="field" placeholder="Default Forecast Duration"><select class="field"><option>Default Model</option></select><button class="btn admin">Save Settings</button></div></section>
+    </div>
+
+    <p class="lead" style="margin-top:18px">Role-based rendering: Admin users access extra management screens while analysts access forecasting-only screens. Backend uses layered REST architecture with JWT auth, preprocessing, model training, forecasting, and report generation.</p>
+  </div>
+</body>
+</html>
